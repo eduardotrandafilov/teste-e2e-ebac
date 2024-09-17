@@ -1,6 +1,8 @@
 /// <reference types="cypress" />
 
 import cadastroPage from "../support/page_objects/cadastro.page";
+import { faker } from '@faker-js/faker';
+
 
 context('Exercicio - Testes End-to-end - Fluxo de pedido', () => {
   /*  Como cliente 
@@ -17,8 +19,13 @@ context('Exercicio - Testes End-to-end - Fluxo de pedido', () => {
 
   it('Deve fazer um pedido na loja Ebac Shop de ponta a ponta', () => {
     cadastroPage.visitarUrl()
-    cadastroPage.registrarCadastro('edutrandafilov@gmail.com','123')
+    cadastroPage.registrarCadastro(faker.internet.email(),faker.internet.password())
     cy.get('.woocommerce-MyAccount-content').should('exist')
+
+    /*produtoPage.visitarUrl()
+    produtoPage.selecionarLista()
+    cy.get()*/
+
       
   });
 
