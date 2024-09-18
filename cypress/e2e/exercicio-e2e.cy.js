@@ -18,16 +18,9 @@ context('Exercicio - Testes End-to-end - Fluxo de pedido', () => {
   });
 
   it('Deve fazer um pedido na loja Ebac Shop de ponta a ponta', () => {
-    cadastroPage.visitarUrl()
-    cadastroPage.registrarCadastro(faker.internet.email(),faker.internet.password())
-    cy.get('.woocommerce-MyAccount-content').should('exist')
-
-    /*produtoPage.visitarUrl()
-    produtoPage.selecionarLista()
-    cy.get()*/
-
-      
+    cadastroPage.realizarCadastro(faker.internet.email(),
+        faker.internet.password(),
+        faker.person.firstName(),
+        faker.person.lastName())
   });
-
-
 })
