@@ -1,4 +1,12 @@
-{
-    "usuario":"Karli.Rowe83@gmail.com",
-    "senha":"OAMdWSh9SXCFZsQ"
-}
+[
+    {
+        "usuario": "aluno_ebac@teste.com",
+        "senha": "teste@teste.com"
+      },
+
+    {
+        "usuario":"Karli.Rowe83@gmail.com",
+        "senha":"OAMdWSh9SXCFZsQ"
+    }
+
+]
