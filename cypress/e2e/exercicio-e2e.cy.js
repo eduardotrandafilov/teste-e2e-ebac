@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
-
-import cadastroPage from "../support/page_objects/cadastro.page";
 import { faker } from '@faker-js/faker';
+import cadastroPage from "../support/page_objects/cadastro.page";
+import produtosPage from "../support/page_objects/produtos.page";
 
 
 context('Exercicio - Testes End-to-end - Fluxo de pedido', () => {
@@ -18,9 +18,16 @@ context('Exercicio - Testes End-to-end - Fluxo de pedido', () => {
   });
 
   it('Deve fazer um pedido na loja Ebac Shop de ponta a ponta', () => {
+    
     cadastroPage.realizarCadastro(faker.internet.email(),
         faker.internet.password(),
         faker.person.firstName(),
         faker.person.lastName())
+
+    produtosPage.buscarProdutoLista('Atlas Fitness Tank')
+    produtosPage.buscarProduto('Atlas Fitness Tank')
+    produtosPage.visitarProduto('Atlas Fitness Tank')
+    produtosPage.addProdutoCarrinho('Atlas Fitness Tank','XS',"Blue",4)
+
+    })
   });
-})
