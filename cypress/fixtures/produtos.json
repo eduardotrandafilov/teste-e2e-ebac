@@ -1,0 +1,20 @@
+[
+    {
+        "nomeProduto": "Atlas Fitness Tank",
+        "tamanho":"XS",
+        "cor":"Blue",
+        "quantidade":4
+    },
+    {
+        "nomeProduto": "Stellar Solar Jacket",
+        "tamanho":"S",
+        "cor":"Blue",
+        "quantidade":5
+    },
+    {
+        "nomeProduto": "Apollo Running Short",
+        "tamanho":"32",
+        "cor":"Black",
+        "quantidade":5
+    }
+]
