@@ -18,16 +18,23 @@ context('Exercicio - Testes End-to-end - Fluxo de pedido', () => {
   });
 
   it('Deve fazer um pedido na loja Ebac Shop de ponta a ponta', () => {
-    
-    cadastroPage.realizarCadastro(faker.internet.email(),
-        faker.internet.password(),
-        faker.person.firstName(),
-        faker.person.lastName())
 
-    produtosPage.buscarProdutoLista('Atlas Fitness Tank')
-    produtosPage.buscarProduto('Atlas Fitness Tank')
-    produtosPage.visitarProduto('Atlas Fitness Tank')
-    produtosPage.addProdutoCarrinho('Atlas Fitness Tank','XS',"Blue",4)
+     cadastroPage.realizarCadastro(faker.internet.email(),
+         faker.internet.password(),
+         faker.person.firstName(),
+         faker.person.lastName())
 
+
+      cy.fixture('produtos').then(dados=>{
+
+        produtosPage.buscarProdutoLista(dados[0].nomeProduto)
+        produtosPage.buscarProduto(dados[0].nomeProduto)
+        produtosPage.visitarProduto(dados[0].nomeProduto)
+      
+        produtosPage.addProdutoCarrinho(dados[0].nomeProduto,
+            dados[0].tamanho,
+            dados[0].cor,
+            dados[0].quantidade)
+      })
     })
   });
