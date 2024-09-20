@@ -16,5 +16,11 @@
         "tamanho":"32",
         "cor":"Black",
         "quantidade":5
+    },
+    {
+        "nomeProduto": "Eos V-Neck Hoodie",
+        "tamanho":"XS",
+        "cor":"Blue",
+        "quantidade":5
     }
 ]
