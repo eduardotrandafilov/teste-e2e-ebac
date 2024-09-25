@@ -20,37 +20,66 @@ context('Exercicio - Testes End-to-end - Fluxo de pedido', () => {
   });
 
   it('Deve fazer um pedido na loja Ebac Shop de ponta a ponta', () => {
+    const formaPagamento = ["Transferência bancária","Cheque","Pagamento na entrega"]
+    const loginRealizadoDadoFake = false
+    const testeFuncional = false
 
-    //  cadastroPage.realizarCadastro(faker.internet.email(),
-    //      faker.internet.password(),
-    //      faker.person.firstName(),
-    //      faker.person.lastName())
+    cy.fixture('perfil').then(perfil=>{
+      const usuario = perfil[1].usuario
+      const senha   = perfil[1].senha
 
+      if(loginRealizadoDadoFake){
+          cadastroPage.realizarCadastro(faker.internet.email(),
+          faker.internet.password(),
+          faker.person.firstName(),
+          faker.person.lastName())
+      }else{
+          cadastroPage.realizarCadastro(usuario,
+          senha,
+          " ",
+          " ")
+      }
 
-    cy.fixture('produtos').then(dados=>{
-      // produtosPage.buscarProdutoLista(dados[0].nomeProduto)
-      // produtosPage.buscarProduto(dados[0].nomeProduto)
-      // produtosPage.visitarProduto(dados[0].nomeProduto)
-    
-      const qtdProdutoSelecionado = 2
-      for (let i = 0;i < qtdProdutoSelecionado;i++){
-        produtosPage.addProdutoCarrinho(dados[i].nomeProduto,
+      cy.fixture('produtos').then(dados=>{
+        produtosPage.buscarProdutoLista(dados[0].nomeProduto)
+        produtosPage.buscarProduto(dados[0].nomeProduto)
+        produtosPage.visitarProduto(dados[0].nomeProduto)
+      
+        const qtdProdutoSelecionado = 2
+        for (let i = 0;i < qtdProdutoSelecionado;i++){
+          produtosPage.addProdutoCarrinho(dados[i].nomeProduto,
             dados[i].tamanho,
             dados[i].cor,
             dados[i].quantidade)
-      }
-      
-      const qtdProdutoAlterado =1
-      for (let i = 0;i < qtdProdutoAlterado;i++){
-        carrinhoPage.adicionarItensCarrinho(`${dados[i].nomeProduto} - ${dados[i].tamanho}, ${dados[i].cor}`)
-        carrinhoPage.excluirItensCarrinho(`${dados[i].nomeProduto} - ${dados[i].tamanho}, ${dados[i].cor}`)
-      }
+        }
 
-      carrinhoPage.concluirCompraCarrinho()
+        const qtdProdutoAlterado =1
+        for (let i = 0;i < qtdProdutoAlterado;i++){
+          carrinhoPage.adicionarItensCarrinho(`${dados[i].nomeProduto} - ${dados[i].tamanho}, ${dados[i].cor}`)
+          carrinhoPage.excluirItensCarrinho(`${dados[i].nomeProduto} - ${dados[i].tamanho}, ${dados[i].cor}`)
+        }
+
+        carrinhoPage.concluirCompraCarrinho()
+      })
+
+      cy.fixture('cadastro').then((cadastro)=>{
+        if(testeFuncional){
+          checkoutPage.realizarLogin(usuario,senha)
+        }
+        checkoutPage.finalizarCompraComLogin(cadastro[0].endereco.pais,
+          cadastro[0].endereco.rua,
+          cadastro[0].endereco.cidade,
+          cadastro[0].endereco.estado,
+          cadastro[0].endereco.cep,
+          cadastro[0].telefone,
+          cadastro[0].nome,
+          cadastro[0].sobrenome,
+          usuario,
+          senha,
+          formaPagamento[1],
+          testeFuncional
+        )    
+      })
     })
-
-    checkoutPage.preencherDetalhesFaturamento()
-
-    
   })
-});
+})
