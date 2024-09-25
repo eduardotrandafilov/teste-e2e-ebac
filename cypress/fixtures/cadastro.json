@@ -1,0 +1,14 @@
+[
+    {
+        "nome":"Karli",
+        "sobrenome":"Howe",
+        "endereco":{
+                "pais":"Estados Unidos",
+                "rua":"Rua teste",
+                "cidade":"Nova Iorque",
+                "estado":"Nova Iorque",
+                "cep":"10001"
+        },
+        "telefone":"212-446-7176"
+    }
+]
