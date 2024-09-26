@@ -22,5 +22,11 @@
         "tamanho":"XS",
         "cor":"Blue",
         "quantidade":5
+    },
+    {
+        "nomeProduto": "Augusta Pullover Jacket",
+        "tamanho":"XS",
+        "cor":"Blue",
+        "quantidade":5
     }
 ]

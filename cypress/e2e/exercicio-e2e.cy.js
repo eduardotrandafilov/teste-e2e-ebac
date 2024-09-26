@@ -45,7 +45,7 @@ context('Exercicio - Testes End-to-end - Fluxo de pedido', () => {
         produtosPage.buscarProduto(dados[0].nomeProduto)
         produtosPage.visitarProduto(dados[0].nomeProduto)
       
-        const qtdProdutoSelecionado = 2
+        const qtdProdutoSelecionado = 5
         for (let i = 0;i < qtdProdutoSelecionado;i++){
           produtosPage.addProdutoCarrinho(dados[i].nomeProduto,
             dados[i].tamanho,
